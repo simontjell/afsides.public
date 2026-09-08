@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Afsides · hvor langt er der til nærmeste beboelse?</title>
+    <meta
+      name="description"
+      content="Interaktivt kort over Danmark, hvor farven viser afstanden fra ethvert punkt til nærmeste beboelse."
+    />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230d3b45'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%23fde725'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%237fbf7b' stroke-width='2'/%3E%3C/svg%3E" />
+    <script type="module" crossorigin src="./assets/index-DYfjmYpq.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BEouXXpS.css">
+  </head>
+  <body>
+    <div id="kort" role="application" aria-label="Kort over Danmark"></div>
+
+    <header id="banner">
+      <h1>Afsides</h1>
+      <p>
+        Afstand til nærmeste beboelse &ndash; endnu en fiks idé fra
+        <a href="https://simplesystemer.dk">Simple Systemer</a>
+      </p>
+    </header>
+
+    <output id="maaler" class="maaler" aria-live="polite" hidden></output>
+
+    <button id="vis" type="button" title="Vis panel" aria-controls="panel" aria-expanded="false" hidden>☰</button>
+
+    <aside id="panel" aria-labelledby="titel">
+      <button id="skjul" type="button" title="Skjul panel" aria-controls="panel" aria-expanded="true">×</button>
+
+      <h2 id="titel" class="panel-titel">Kontrolpanel</h2>
+
+      <div id="aflaesning" class="aflaesning" aria-live="polite">
+        <div class="aflaesning-tal"><span id="aflaesning-vaerdi">–</span></div>
+        <div class="aflaesning-tekst" id="aflaesning-tekst">Peg på kortet</div>
+      </div>
+
+      <section class="blok">
+        <canvas id="legende" aria-hidden="true"></canvas>
+        <div id="legende-maerker" class="legende-maerker"></div>
+      </section>
+
+      <section class="blok kontroller">
+        <label class="kontrol">
+          <span class="kontrol-navn">Skalaens bund <output id="min-vaerdi"></output></span>
+          <input id="min" type="range" min="0" max="6950" step="50" value="500" />
+        </label>
+
+        <label class="kontrol">
+          <span class="kontrol-navn">Skalaens top <output id="maks-vaerdi"></output></span>
+          <input id="maks" type="range" min="50" max="7000" step="50" value="5000" />
+        </label>
+
+        <label class="kontrol">
+          <span class="kontrol-navn">Gennemsigtighed <output id="opacitet-vaerdi"></output></span>
+          <input id="opacitet" type="range" min="0" max="100" step="1" value="50" />
+        </label>
+
+        <div class="kontrol-raekke">
+          <label class="kontrol">
+            <span class="kontrol-navn">Farver</span>
+            <select id="skala"></select>
+          </label>
+          <label class="kontrol">
+            <span class="kontrol-navn">Fordeling</span>
+            <select id="skalering"></select>
+          </label>
+        </div>
+      </section>
+
+      <section class="blok">
+        <h2>Mest afsidesliggende steder</h2>
+        <div id="liste-valg" class="liste-valg" role="group" aria-label="Afgræns til landstykker"></div>
+        <ol id="fjerneste" class="fjerneste"></ol>
+      </section>
+
+      <details class="blok om">
+        <summary>Om data og metode</summary>
+        <div id="om-indhold"></div>
+      </details>
+    </aside>
+
+    <div id="status" class="status" hidden></div>
+
+
+    <!-- Besøgsstatistik uden cookies. Egne testbesøg med ?debug tælles ikke med. -->
+    <script>
+      window.goatcounter = { no_onload: new URLSearchParams(location.search).has('debug') };
+    </script>
+    <script data-goatcounter="https://afsides.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  </body>
+</html>
